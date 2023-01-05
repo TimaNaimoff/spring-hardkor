@@ -6,10 +6,30 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
     <bean id="musicBean"
           class="org.example.music_domain.RockMusic">
     </bean>
     <bean id="musicallBean"
           class ="org.example.music_domain.JazzMusic">
+    </bean>
+    <bean id="classicBean"
+          class="org.example.music_domain.ClassicalMusic">
+    </bean>
+    <!-- Creating beans with using constructor  -->
+    <bean id="musicPlayer"
+       class="org.example.music_domain.MusicPlayer">
+<!--        <constructor-arg type="org.example.music_domain.Music"-->
+        <constructor-arg ref="musicBean"/>
+        <constructor-arg ref="musicallBean"/>
+        <constructor-arg ref="classicBean"/>
+    </bean>
+
+    <!-- Creating beans with using getters  -->
+    <bean id="musicPlayerSetter"
+          class="org.example.music_domain.MusicPlayer">
+        <property name="music" ref="musicBean"/>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="value" value="${musicPlayer.value}"/>
     </bean>
 </beans>
