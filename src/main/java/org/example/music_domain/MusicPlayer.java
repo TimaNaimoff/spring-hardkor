@@ -16,10 +16,16 @@ public class MusicPlayer {
         list.add(music3);
     }
     public MusicPlayer(){}
+    public MusicPlayer(Music music){
+        this.music=music;
+    }
     public void playMusic(){
        list.forEach(e->{
            System.out.println(e.getSong());
        });
+    }
+    public void playMusic2(){
+        System.out.println(music.getSong());
     }
 
     public void setList(Music...music) {

@@ -1,11 +1,18 @@
 package org.example.music_domain;
 
 import org.example.music_domain.Music;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 
 public class RockMusic implements Music {
+    public RockMusic(){}
     public static RockMusic factoryMethod(){
         return new RockMusic();
     }
+
      private void doMyInit(){
          System.out.println("Bean initialized!");
      }
