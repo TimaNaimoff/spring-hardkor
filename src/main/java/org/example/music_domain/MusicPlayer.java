@@ -1,52 +1,44 @@
 package org.example.music_domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
-    private Music music;
-    private List<Music> list=new ArrayList<>();
+//    private Music music;
+    private ClassicalMusic classicalMusic;
+    private JazzMusic jazzMusic;
     private String name;
     private int value;
-    //IoC
-    public MusicPlayer(Music music1,Music music2,Music music3){
-        list.add(music1);
-        list.add(music2);
-        list.add(music3);
-    }
-    public MusicPlayer(){}
-    public MusicPlayer(Music music){
-        this.music=music;
-    }
-    public void playMusic(){
-       list.forEach(e->{
-           System.out.println(e.getSong());
-       });
-    }
-    public void playMusic2(){
-        System.out.println(music.getSong());
+
+     public MusicPlayer(){}
+
+    //Dependency-injection with annotations
+//    @Autowired
+//    public MusicPlayer(Music music){
+//        this.music = music;
+//    }
+    @Autowired
+    public MusicPlayer(JazzMusic jazzMusic,ClassicalMusic classicalMusic){
+         this.jazzMusic=jazzMusic;
+         this.classicalMusic=classicalMusic;
     }
 
-    public void setList(Music...music) {
-        list.addAll(Arrays.asList(music));
+
+    public String playMusic2(){
+        return jazzMusic.getSong()+" "+classicalMusic.getSong();
     }
 
-    public List<Music> getList() {
-        return list;
-    }
+//    public Music getMusic() {
+//        return music;
+//    }
+//    public void setMusic(Music music) {
+//        this.music = music;
+//    }
 
-    public Music getMusic() {
-        return music;
-    }
-
-    public void setMusic(Music music) {
-        this.music = music;
-    }
-
-    public void setList(List<Music> list) {
-        this.list = list;
-    }
 
     public String getName() {
         return name;
@@ -67,7 +59,6 @@ public class MusicPlayer {
     @Override
     public String toString() {
         return "MusicPlayer{" +
-                "list=" + list +
                 ", name='" + name + '\'' +
                 ", value=" + value +
                 '}';

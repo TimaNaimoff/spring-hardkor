@@ -22,7 +22,7 @@ public class ClassicalMusic implements Music{
     }
 
     private void doMyDestroy() {
-        System.out.println("ClessicalMusicBean destroyed!");
+        System.out.println("ClassicalMusicBean destroyed!");
     }
 
 }

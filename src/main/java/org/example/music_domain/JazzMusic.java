@@ -2,7 +2,6 @@ package org.example.music_domain;
 
 
 import org.springframework.stereotype.Component;
-
 @Component
 public class JazzMusic implements Music{
     public JazzMusic(){}
