@@ -8,28 +8,43 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
     <bean id="musicBean"
-          class="org.example.music_domain.RockMusic">
+          class="org.example.music_domain.RockMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          scope="prototype"
+          factory-method="factoryMethod">
+
     </bean>
     <bean id="musicallBean"
-          class ="org.example.music_domain.JazzMusic">
+          class ="org.example.music_domain.JazzMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          scope="prototype">
     </bean>
     <bean id="classicBean"
-          class="org.example.music_domain.ClassicalMusic">
-    </bean>
-    <!-- Creating beans with using constructor  -->
-    <bean id="musicPlayer"
-       class="org.example.music_domain.MusicPlayer">
-<!--        <constructor-arg type="org.example.music_domain.Music"-->
-        <constructor-arg ref="musicBean"/>
-        <constructor-arg ref="musicallBean"/>
-        <constructor-arg ref="classicBean"/>
-    </bean>
+          class="org.example.music_domain.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          scope="prototype">
 
-    <!-- Creating beans with using getters  -->
-    <bean id="musicPlayerSetter"
-          class="org.example.music_domain.MusicPlayer">
-        <property name="music" ref="musicBean"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="value" value="${musicPlayer.value}"/>
     </bean>
+<!--    &lt;!&ndash; Creating beans with using constructor  &ndash;&gt;-->
+<!--    <bean id="musicPlayer"-->
+<!--       class="org.example.music_domain.MusicPlayer"-->
+<!--       scope="prototype"-->
+<!--    >-->
+<!--&lt;!&ndash;        <constructor-arg type="org.example.music_domain.Music"&ndash;&gt;-->
+<!--        <constructor-arg ref="musicBean"/>-->
+<!--        <constructor-arg ref="musicallBean"/>-->
+<!--        <constructor-arg ref="classicBean"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash; Creating beans with using getters  &ndash;&gt;-->
+<!--    <bean id="musicPlayerSetter"-->
+<!--          class="org.example.music_domain.MusicPlayer">-->
+
+<!--        <property name="music" ref="musicBean"/>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="value" value="${musicPlayer.value}"/>-->
+<!--    </bean>-->
 </beans>
