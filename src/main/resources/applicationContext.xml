@@ -7,5 +7,5 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="org.example.music_domain"/>
-
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
 </beans>

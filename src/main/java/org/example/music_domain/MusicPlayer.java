@@ -1,6 +1,8 @@
 package org.example.music_domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,59 +10,58 @@ import java.util.List;
 
 @Component
 public class MusicPlayer {
-//    private Music music;
-    private ClassicalMusic classicalMusic;
-    private JazzMusic jazzMusic;
-    private String name;
-    private int value;
-
+     private Music music1;
+     private Music music2;
+     @Value("${musicPlayer.name}")
+     private String name;
+     @Value("${musicPlayer.value}")
+     private int age;
+     @Autowired
+     public MusicPlayer(@Qualifier("rockMusic")Music music1,
+                        @Qualifier("classicalMusic")Music music2){
+         this.music1=music1;
+         this.music2=music2;
+     }
      public MusicPlayer(){}
 
-    //Dependency-injection with annotations
-//    @Autowired
-//    public MusicPlayer(Music music){
-//        this.music = music;
-//    }
-    @Autowired
-    public MusicPlayer(JazzMusic jazzMusic,ClassicalMusic classicalMusic){
-         this.jazzMusic=jazzMusic;
-         this.classicalMusic=classicalMusic;
+
+    public String playMusic2(MusicStyles styles){
+        switch(styles){
+            case ROCK:
+                return music1.getSong()+":"+name+":"+age;
+            case CLASSICAL:
+                return music2.getSong()+":"+name+":"+age;
+            default:
+                return null;
+        }
+     }
+
+    public Music getMusic1() {
+        return music1;
     }
 
-
-    public String playMusic2(){
-        return jazzMusic.getSong()+" "+classicalMusic.getSong();
+    public void setMusic1(Music music1) {
+        this.music1 = music1;
     }
 
-//    public Music getMusic() {
-//        return music;
-//    }
-//    public void setMusic(Music music) {
-//        this.music = music;
-//    }
+    public Music getMusic2() {
+        return music2;
+    }
 
+    public void setMusic2(Music music2) {
+        this.music2 = music2;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public int getAge() {
+        return age;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return "MusicPlayer{" +
-                ", name='" + name + '\'' +
-                ", value=" + value +
-                '}';
-    }
 }
+enum MusicStyles{
+    CLASSICAL,ROCK
+        }

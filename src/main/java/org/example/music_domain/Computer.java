@@ -14,7 +14,10 @@ public class Computer {
         this.id=1L;
     }
     public void playMusic(){
-        System.out.println(musicPlayer.playMusic2());
+        int counter= (int) (Math.random() * 1);
+        System.out.println(counter);
+        System.out.println(musicPlayer.playMusic2(counter==0?MusicStyles.CLASSICAL:
+                MusicStyles.ROCK));
     }
     public MusicPlayer getMusicPlayer() {
         return musicPlayer;
@@ -24,11 +27,5 @@ public class Computer {
         this.musicPlayer = musicPlayer;
     }
 
-    @Override
-    public String toString() {
-        return "Computer{" +
-                "id=" + id +
-                ", musicPlayer=" + musicPlayer.playMusic2() +
-                '}';
-    }
+
 }
