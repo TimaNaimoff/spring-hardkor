@@ -9,8 +9,7 @@ import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-
+//@Component
 public class RockMusic implements Music {
     private List<String> list;
     public RockMusic(){
@@ -31,15 +30,15 @@ public class RockMusic implements Music {
          System.out.println("Doing my destruction!");
      }
 
-    public List<String> getList() {
+      public List<String> getList() {
         return list;
     }
 
-    public void setList(List<String> list) {
+      public void setList(List<String> list) {
         this.list = list;
     }
 
-    @Override
+      @Override
       public String getSong() {
         return list.toString();
     }

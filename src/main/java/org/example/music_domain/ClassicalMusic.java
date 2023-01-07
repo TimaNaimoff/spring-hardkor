@@ -9,7 +9,7 @@ import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 //@Scope("prototype")
 public class ClassicalMusic implements Music{
     private List<String> list;
